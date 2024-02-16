@@ -2,16 +2,17 @@ import * as esbuild from 'esbuild-wasm';
 import ReactDOM from 'react-dom';
 import {useEffect, useRef, useState} from "react";
 import {unpkgPathPlugin} from "./plugins/unpkg-path-plugin";
+import {fetchPlugin} from "./plugins/fetch-plugin";
 
 const App = () => {
   const esbuildServiceRef = useRef<esbuild.Service>();
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState('import \'bulma/css/bulma.css\';');
   const [code, setCode] = useState('');
 
   const startService = async () => {
     esbuildServiceRef.current = await esbuild.startService({
       worker: true,
-      wasmURL: '/esbuild.wasm',
+      wasmURL: 'https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm',
     });
   }
   useEffect(() => {
@@ -26,7 +27,10 @@ const App = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin()],
+      plugins: [
+        unpkgPathPlugin(),
+        fetchPlugin(input),
+      ],
       define: {
         'process.env.NODE_ENV': '"production"',
         global: 'window',
