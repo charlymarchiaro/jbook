@@ -52,6 +52,7 @@ const Resizable: React.FC<ResizableProps> = ({direction, children}) => {
     resizableProps = {
       height: 300,
       width: Infinity,
+      className: 'bottom-handle-margin',
       resizeHandles: ['s'],
       minConstraints: [Infinity, 24],
       maxConstraints: [Infinity, Math.floor(innerHeight * 0.9)],
