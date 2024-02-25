@@ -12,7 +12,7 @@ const Resizable: React.FC<ResizableProps> = ({direction, children}) => {
   let resizableProps: ResizableBoxProps;
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(Math.floor(window.innerWidth * 0.6));
 
   useEffect(() => {
 
