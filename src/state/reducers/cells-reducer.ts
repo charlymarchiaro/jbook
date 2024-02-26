@@ -71,7 +71,7 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
     default:
       return state;
   }
-});
+}, initialState);
 
 const randomId = () => {
   return Math.random().toString(36).substring(2, 7);
