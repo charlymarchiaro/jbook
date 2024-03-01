@@ -68,6 +68,38 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
     }
 
      //
+    case ActionType.FETCH_CELLS: {
+      state.loading = true;
+      state.error = null;
+      return state;
+    }
+
+     //
+    case ActionType.FETCH_CELLS_COMPLETE: {
+      const {cells} = action.payload
+      state.order = cells.map(item => item.id);
+      state.data = cells.reduce((dict, item) => {
+        dict[item.id] = item;
+        return dict;
+      }, {} as CellsState['data']);
+      return state;
+    }
+
+     //
+    case ActionType.FETCH_CELLS_ERROR: {
+      const {error} = action.payload;
+      state.loading = false;
+      state.error = error;
+      return state;
+    }
+
+     //
+    case ActionType.SAVE_CELLS_ERROR: {
+      const {error} = action.payload;
+      return state;
+    }
+
+     //
     default:
       return state;
   }
