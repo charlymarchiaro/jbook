@@ -1,19 +1,28 @@
 {
-  "name": "cli",
+  "name": "@ch444/jbook-cli",
   "version": "1.0.0",
   "description": "",
+  "bin": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^12.0.0",
-    "local-api": "^1.0.0"
+    "@ch444/jbook-local-client": "^1.0.0"
   },
   "devDependencies": {
+    "@ch444/jbook-local-api": "^1.0.0",
+    "commander": "^12.0.0",
     "@types/node": "^20.11.24",
+    "esbuild": "0.8.26",
     "typescript": "^5.3.3"
   }
 }

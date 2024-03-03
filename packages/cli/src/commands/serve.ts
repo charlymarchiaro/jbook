@@ -1,6 +1,6 @@
-import {Command} from "commander";
-import {serve} from "local-api/dist";
 import path from "path";
+import {Command} from "commander";
+import {serve} from "@ch444/jbook-local-api";
 
 interface LocalApiError {
   code: string;
