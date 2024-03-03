@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "@ch444/jbook-local-api": "^1.0.0",
-    "commander": "^12.0.0",
     "@types/node": "^20.11.24",
+    "commander": "^12.0.0",
     "esbuild": "0.8.26",
     "typescript": "^5.3.3"
   }
